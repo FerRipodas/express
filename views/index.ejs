@@ -5,9 +5,20 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
+
     <%- include('partials/nav.ejs') %>
 
+
+    <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <form action="/buscar" method="GET">
+      <label for="">
+          BUscar libro:
+          <input type="search" name="termino">
+      </label>
+          <input type="submit" name="Buscar">
+    </form>
+
   </body>
 </html>
