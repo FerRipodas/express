@@ -9,8 +9,6 @@ router.get('/', function(req, res, next) {
 
 /* GET nosotros page */
 router.get('/buscar', (req, res) => {
-
-
   //guardar los que escribio el usuario
 //mostrarlo en la terminal
 
@@ -21,6 +19,40 @@ console.log(termino);
 
   res.send('estas en buscar')
 });
+
+  /* GET agregar */
+router.get('/agregar', (req, res) => {
+  res.render('pages/agregar');
+});
+
+  /* POST agregar-LIBRO */
+  router.post('/agregar-libro', (req, res) => {
+    //Conseguir lo que el usuario tipeo
+    //para levantar algo por metodo post
+    //debo usar ... req.body
+    console.log(req.body);
+
+      let {titulo, autor, precio} =req.body
+
+    res.send(`Agregaron ${titulo} ${autor} ${precio}`)
+    // res.render('pages/agregar');
+  });
+
+/*
+GET
+  req.params: (/:id)
+  req.query: (?termino=sarasa)
+POST
+req.body
+
+req.LOQUESEA.body
+*/
+
+
+
+
+
+
 
 
 
