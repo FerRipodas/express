@@ -8,6 +8,13 @@ var app = require('../app');
 var debug = require('debug')('clase3:server');
 var http = require('http');
 
+//Importamos todos los modelos de mi base de datos
+//../models salgo de la carpeta bin y desde alli busco modelos
+//no es necesario escribir el archivo index.js lo toma por defecto
+//pero si se cambia el nombre hay que escribirlo
+const db = require('../models');
+
+
 /**
  * Get port from environment and store in Express.
  */
@@ -25,9 +32,15 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+//.then es una promesa, se usa cuando el proceso demora
+//hace esto...y despues cuando termines segui
+//Recien cuando termine de levantar la base de datos voy a preder el servidor. Para hacer esto uso la promesa
+db.sequelize.sync().then(() => {
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
+
 
 /**
  * Normalize a port into a number, string, or false.
