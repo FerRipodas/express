@@ -1,10 +1,22 @@
 var express = require('express');
 var router = express.Router();
 
+const api = require('../api')
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', async (req, res) => {
+  // Llamamos a la función getBooks que está dentro de api
+  const libros = await api.getBooks();
+  console.log(libros);
+
+  //Si soy un servicio como whetermap siempre devuelvo un JSON usadno un  res.send
+  res.send(libros);
+
+  //monorepo vs MONOLITO
+  //delegar el front---se ocupa angular y levanta el JSON fetch a mi backend htmlttpsrequest
+  //res.render('index', { title: 'Ron Weasley' });
 });
+
 
 
 /* GET nosotros page */
