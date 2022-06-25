@@ -32,6 +32,16 @@ console.log(termino);
   res.send('estas en buscar')
 });
 
+
+//crear una ruta de /autores
+//Mostrar el listado de Json de todos los autores
+router.get('/autores', async (req, res) => {
+  const autores = await api.getAuthors();
+
+  res.send(autores);
+});
+
+
   /* GET agregar */
 router.get('/agregar', (req, res) => {
   res.render('pages/agregar');
